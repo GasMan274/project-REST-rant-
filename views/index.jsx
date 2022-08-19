@@ -1,7 +1,11 @@
 const React = require('react')
 const Def = require('./default')
 
-function error404 () {
+function index () {}
+
+module.exports = index
+
+function index () {
     return (
       <Def>
           <main>
@@ -11,5 +15,3 @@ function error404 () {
       </Def>
     )
   }
-  
-  module.exports = error404
