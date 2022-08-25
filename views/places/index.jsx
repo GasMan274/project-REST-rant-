@@ -1,19 +1,6 @@
 const React = require('react')
-const Def = require('./default')
-
-function index (data) {
-    let placesFormatted = data.places.map((place) => {
-      return (
-        <div>
-          <h2>{place.name}</h2>
-          <img src={place.pic} alt={place.name}/>
-        </div>
-      )
-    })
-    function index (data) {
-        // ...
-      }
-      
+const Def = require('../default')
+     
       function index (data) {
         let placesFormatted = data.places.map((place) => {
           return (
@@ -34,9 +21,8 @@ function index (data) {
       }
       
 
-  function index (data) {
-    // ...
-  }
+ 
+
   
   module.exports = index
 
