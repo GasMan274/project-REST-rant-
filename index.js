@@ -10,7 +10,7 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 
 //controllers & Routes
-app.use('/places', require('./views/places'))
+app.use('/places', require('./places'))
 
 app.get('/', (req, res) => {
   res.render('home')
