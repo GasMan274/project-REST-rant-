@@ -7,8 +7,11 @@ function error404 () {
           <main>
               <h1>404: PAGE NOT FOUND</h1>
               <p>Oops, sorry, we can't find this page!</p>
-          </main>
-      </Def>
+              <div>
+                <img src="public/images/dead end .jpeg" alt="dead end sign" />
+              </div>
+            </main>
+          </Def>
     )
   }
   
