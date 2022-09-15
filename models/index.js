@@ -65,5 +65,5 @@ router.get('/', (req, res) => {
       })
       
 
-module.exports.Place = require('./places')
-module.exports.Comment = require('./comments')
+module.exports.Place = require('./places'),
+module.exports.Comment = require('./comments'),
