@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -23,11 +24,19 @@ router.get('/', (req, res) => {
             res.redirect('/places')
         })
         .catch(err => {
-            console.log('err', err)
-            res.render('error404')
-        })
-      })
-      
+            if (err && err.name == 'ValidationError') {
+                let message = 'Validation Error: '
+                for (var field in err.errors) {
+                    message += `${field} was ${err.errors[field].value}. `
+                    message += `${err.errors[field].message}`
+                }
+                console.log('Validation error message', message)
+                res.render('places/new', { message })
+            }
+            else {
+                res.render('error404')
+            }
+    
       router.get('/:id', (req, res) => {
         db.Place.findById(req.params.id)
         .then(place => {
