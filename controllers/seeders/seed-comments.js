@@ -5,19 +5,33 @@ async function seed() {
     // Get the place, H-Thai-ML
     let place = await db.Place.findOne({ name: 'H-Thai-ML' })
 
-    // Create a fake, sample comment
-    let comment = await db.Comment.create({
-        author: 'Famished Fran',
-        rant: false,
-        stars: 5.0,
-        content: 'Wow, simply amazing food here. I highly recommend this to anyone visiting the area!'
-    })
+    const db = require('../models')
 
-    // Add that comment to the place's comment array
-    place.comments.push(comment.id)
+    // To use await, we need an async function.
+    async function seed() {
+        // Get the place, H-Thai-ML
+        let place = await db.Place.findOne({ name: 'H-Thai-ML' })
     
-    // Exit the program
-    process.exit()
+        // Create a fake sample comment.
+        let comment = await db.Comment.create({
+            author: 'Famished Fran',
+            rant: false,
+            stars: 5.0,
+            content: 'Wow, simply amazing! Highly recommended!'
+        })
+    
+        // Add that comment to the place's comment array.
+        place.comments.push(comment.id)
+    
+        //save the place now that it has comment
+        await place.save()
+        
+        // Exit the program
+        process.exit()
+    }
+    
+    seed()
+      
 }
 
 seed()
