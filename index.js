@@ -19,53 +19,45 @@ app.use(methodOverride('_method'))
 //Controllers & Routes
 app.use('/places', require('./controllers/places'))
 
-//HomePage route
-app.get('/', (req, res) => {
-    res.render('home')
+const router = require('express').Router()
+
+
+
+
+router.get('/', (req, res) => {
+  res.send('GET /places stub')
 })
 
-app.get('*', (req, res) => {
-    res.render('error404')
+router.post('/', (req, res) => {
+  res.send('POST /places stub')
 })
 
-let placesFormatted = data.places.map((place, index) => {
-    return (
-      <div className="col-sm-6">
-        <h2>
-          <a href={`/places/${index}`} >
-            {place.name}
-          </a>
-        </h2>
-        <p>className="text-center" 
-          {place.cuisines}
-        </p>
-        <img src={place.pic} alt={place.name} />
-        <p className="text-center">
-          Located in {place.city}, {place.state}
-        </p>
-      </div>
-    )
-  })
-  router.delete('/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-      res.render('error404')
-    }
-    else if (!places[id]) {
-      res.render('error404')
-    }
-    else {
-      places.splice(id, 1)
-      res.redirect('/places')
-    }
-  })
-  
-  
-  
-// Listen for Connections
-app.listen(process.env.PORT)
-//Listen for connections 
+router.get('/new', (req, res) => {
+  res.render('places/new')
+})
 
+router.get('/:id', (req, res) => {
+  res.send('GET /places/:id stub')
+})
 
+router.put('/:id', (req, res) => {
+  res.send('PUT /places/:id stub')
+})
 
-// res.status(404).render('error404')
+router.delete('/:id', (req, res) => {
+  res.send('DELETE /places/:id stub')
+})
+
+router.get('/:id/edit', (req, res) => {
+  res.send('GET edit form stub')
+})
+
+router.post('/:id/rant', (req, res) => {
+  res.send('GET /places/:id/rant stub')
+})
+
+router.delete('/:id/rant/:rantId', (req, res) => {
+    res.send('GET /places/:id/rant/:rantId stub')
+})
+
+module.exports = router
