@@ -46,17 +46,22 @@ router.get('/new', (req, res) => {
 
 //SHOW route 
 router.get('/:id', (req, res) => {
-    db.Place.findById(req.params.id)
-        .populate('comments')
-        .then(place => {
-            console.log(place.comments)
-            res.render('places/show', { place })
-        })
-        .catch(err => {
-            console.log('err', err)
-            res.render('error404')
-        })
-})
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
+      res.render('error404')
+    }
+    else if (!places[id]) {
+      res.render('error404')
+    }
+    else {
+      res.render('places/show')
+    }
+    res.render('places/show', { place: places[id] })
+
+  })
+  
+  
+
 
 
 //Update(PUT)route
