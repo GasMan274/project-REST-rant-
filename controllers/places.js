@@ -81,14 +81,19 @@ router.put('/:id', (req, res) => {
 
 //edit route
 router.get('/:id/edit', (req, res) => {
-    db.Place.findById(req.params.id)
-    .then(place => {
-        res.render('places/edit', { place })
-    })
-    .catch(err => {
+    let id = Number(req.params.id)
+    if (isNaN(id)) {
         res.render('error404')
-    })
-})
+    }
+    else if (!places[id]) {
+        res.render('error404')
+    }
+    else {
+      res.render('places/edit', { place: places[id] })
+    
+    }
+  })
+  
 
 
 
