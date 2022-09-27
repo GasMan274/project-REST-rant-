@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
                 res.render('error404')
             }
     
-            //router.get('/:id', (req, res) => {
+            router.get('/:id', (req, res) => {
                 db.Place.findById(req.params.id)
                 .populate('comments')
                 .then(place => {
